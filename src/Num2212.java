@@ -1,8 +1,6 @@
-import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.*;
 
-public class Main {
+public class Num2212 {
 
     public static int N;
     public static int K;
