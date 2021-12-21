@@ -1,8 +1,8 @@
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Scanner;
 
-public class Main {
+public class Num13904 {
 
     public static int N;
     public static int[][] d;
