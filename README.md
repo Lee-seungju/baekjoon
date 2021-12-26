@@ -8,7 +8,7 @@ https://www.acmicpc.net/problem/ + 문제번호
 
 ### 완전탐색
 <div>
-  <a href='https://www.acmicpc.net/problem/2309'>일곱 난쟁이</a>
+  <a href='https://www.acmicpc.net/problem/2309'>일곱 난쟁이</a> - 2309
 </div>
 <div>
   <a href='https://www.acmicpc.net/problem/2331'>반복수열</a>
