@@ -2,9 +2,11 @@
 
 알고리즘 스터디를 백준 사이트의 예제를 통해 학습하기 위한 용도
 
-# 풀이
+# BaekJoon
+<a href="https://solved.ac/profile/seungju0000">
+<img src="http://mazassumnida.wtf/api/v2/generate_badge?boj=seungju0000" style="height: 200px"/>
 
-https://www.acmicpc.net/problem/ + 문제번호
+# 진행
 
 ### 완전탐색
 <div>
