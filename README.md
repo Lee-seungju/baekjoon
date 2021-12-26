@@ -10,7 +10,7 @@ https://www.acmicpc.net/problem/ + 문제번호
 <div>2309 - [일곱 난쟁이](https://www.acmicpc.net/problem/2309)</div>
 <div>(2331)[반복수열]</div>
 <div>
-  <a href="[분해합](https://www.acmicpc.net/problem/2231)">
+  <a href="(https://www.acmicpc.net/problem/2231)">[분해합]</a>
     </div>
 <div>[사탕게임](3085)</div>
 <div>[유레카 이론](10448)</div>
