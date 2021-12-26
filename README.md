@@ -17,7 +17,7 @@ https://www.acmicpc.net/problem/ + 문제번호
   <a href='https://www.acmicpc.net/problem/2231'>분해합</a> - 2231
 </div>
 <div>
-  <a href='https://www.acmicpc.net/problem/3085'사탕게임</a> - 3085
+  <a href='https://www.acmicpc.net/problem/3085'>사탕게임</a> - 3085
 </div>
 <div>
   <a href='https://www.acmicpc.net/problem/10448'>유레카 이론</a> - 10448
