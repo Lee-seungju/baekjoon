@@ -7,7 +7,7 @@
 https://www.acmicpc.net/problem/ + 문제번호
 
 ### 완전탐색
-<div>(2309)[일곱 난쟁이]</div>
+<div>2309 - 일곱 난쟁이</div>
 <div>(2331)[반복수열]</div>
 <div>[분해합](2231)</div>
 <div>[사탕게임](3085)</div>
