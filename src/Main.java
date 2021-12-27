@@ -5,50 +5,54 @@ import java.util.*;
 public class Main {
 
     public static int N;
-    public static long Num[];
+    public static int Num[][];
 
     public static void main(String[] args) {
         //input
         Scanner scanner = new Scanner(System.in);
         N = Integer.parseInt(scanner.nextLine());
-        Num = new long[N];
+        Num = new int[N][N];
         for (int i=0; i<N; i++) {
-            Num[i] = Long.parseLong(scanner.nextLine());
+            String[] a = scanner.nextLine().split("");
+            for (int j=0; j<N; j++) {
+                Num[i][j] = Integer.parseInt(a[j]);
+            }
         }
+
 
         //logic
 
         //output
-        System.out.println(input(0, N-1));
-
+        input(0, 0, N);
     }
 
-    public static long input(int start, int end) {
-        if (start > end)
-            return -1;
-        if (start == end)
-            return Num[start];
-        int mid = (start + end) / 2;
-        long max = Math.max(input(start, mid), input(mid+1, end));
-
-        int left = mid;
-        int right = mid+1;
-        long min = Math.min(Num[left], Num[right]);
-        long width = 2;
-        long area = min * width;
-        max = Math.max(max, area);
-        while (left > start || right < end) {
-            if (right < end && (left == start || Num[left-1] <  Num[right+1])) {
-                right++;
-                min = Math.min(min, Num[right]);
-            } else {
-                left--;
-                min = Math.min(min, Num[left]);
+    public static void input(int startHeight,int startWidth, int size) {
+        int num = Num[startHeight][startWidth];
+        for (int i=startHeight; i<startHeight+size; i++) {
+            for (int j=startWidth; j<startWidth+size; j++) {
+                if (Num[i][j] != num) {
+                    if (size == 2) {
+                        System.out.print("(");
+                        for (int k = startHeight; k < startHeight + 2; k++) {
+                            for (int t = startWidth; t < startWidth + 2; t++) {
+                                System.out.print(Num[k][t]);
+                            }
+                        }
+                        System.out.print(")");
+                        return;
+                    }
+                    System.out.print("(");
+                    for (int k=0; k<2; k++) {
+                        for (int t=0; t<2; t++) {
+                            input(startHeight + k * (size/2),
+                                    startWidth + t * (size/2) , size/2);
+                        }
+                    }
+                    System.out.print(")");
+                    return;
+                }
             }
-            width++;
-            max = Math.max(max, min * width);
         }
-
-        return max;
+        System.out.print(num);
     }
 }
