@@ -5,83 +5,25 @@ import java.util.*;
 public class Main {
 
     public static int N;
-    public static int Num[][];
+    public static long NumZero[];
+    public static long NumOne[];
 
     public static void main(String[] args) {
         //input
         Scanner scanner = new Scanner(System.in);
         N = Integer.parseInt(scanner.nextLine());
-        Num = new int[N][N];
-        for (int i=0; i<N; i++) {
-            String[] a = scanner.nextLine().split(" ");
-            for (int j=0; j<N; j++) {
-                Num[i][j] = Integer.parseInt(a[j]);
-            }
-        }
+        NumZero = new long[N+1];
+        NumOne = new long[N+1];
 
         //logic
-        int answer = input(0, N, 0, N, -1);
+        NumZero[1] = 0;
+        NumOne[1] = 1;
+        for (int i=2; i<=N; i++) {
+            NumOne[i] = NumZero[i-1];
+            NumZero[i] = NumOne[i-1] +NumZero[i-1];
+        }
 
         //output
-        if (answer == 0)
-            System.out.println(-1);
-        else
-            System.out.println(answer);
-    }
-
-    public static int input(int startHeight, int endHeight, int startWidth, int endWidth, int cut) {
-        int answer = 0;
-        int voSuck = 0;
-        int bollSoon = 0;
-        for (int i=startHeight; i < endHeight; i++) {
-            for (int j=startWidth; j < endWidth; j++) {
-                if (Num[i][j] == 1)
-                    bollSoon++;
-                else if (Num[i][j] == 2)
-                    voSuck++;
-            }
-        }
-        if (voSuck == 0 || (voSuck == 1 && bollSoon >= 1) || (voSuck >=2 && bollSoon == 0))
-            return 0;
-        else if (voSuck == 1 && bollSoon == 0)
-            return 1;
-        else {
-            for (int i=startHeight; i < endHeight; i++) {
-                for (int j=startWidth; j < endWidth; j++) {
-                    if (Num[i][j] == 1) {
-                        if (cut != 0) {
-                            boolean signal = true;
-                            for (int k = startWidth; k < endWidth; k++) {
-                                if (Num[i][k] == 2) {
-                                    signal = false;
-                                    break;
-                                }
-                            }
-                            if (signal == true) {
-                                int first = input(startHeight, i, startWidth, endWidth, 0);
-                                int second = input(i + 1, endHeight, startWidth, endWidth, 0);
-                                answer += first * second;
-                            }
-                        }
-                        if (cut != 1) {
-                            boolean signal = true;
-                            signal = true;
-                            for (int k = startHeight; k < endHeight; k++) {
-                                if (Num[k][j] == 2) {
-                                    signal = false;
-                                    break;
-                                }
-                            }
-                            if (signal == true) {
-                                int first = input(startHeight, endHeight, startWidth, j, 1);
-                                int second = input(startHeight, endHeight, j + 1, endWidth, 1);
-                                answer += first * second;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return answer;
+        System.out.println(NumOne[N] + NumZero[N]);
     }
 }
