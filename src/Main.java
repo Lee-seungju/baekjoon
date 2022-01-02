@@ -1,55 +1,61 @@
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Array;
 import java.util.*;
 
 public class Main {
 
-    public static int N;
-    public static int K;
-    public static int S1[];
-    public static String S2[];
-    public static Deque<String> deque = new ArrayDeque<>();
+    public static String N;
+    public static int M;
+    public static Deque<String> leftDeque = new ArrayDeque<>();
+    public static Deque<String> rightDeque = new ArrayDeque<>();
 
-    public static int[] alpha = new int[27];
-
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         //input
-        Scanner scanner = new Scanner(System.in);
-        String[] a = scanner.nextLine().split(" ");
-        N = Integer.parseInt(a[0]);
-        K = Integer.parseInt(a[1]);
-        S1 = new int[K];
-        S2 = new String[K];
-        for (int i=0; i<K; i++) {
-            a = scanner.nextLine().split(" ");
-            S1[i] = Integer.parseInt(a[0]);
-            S2[i] = a[1];
-        }
-        for (int i=0; i<N; i++) {
-            deque.addLast("?");
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+
+        N = br.readLine();
+        M = Integer.parseInt(br.readLine());
+
+        String[] ab = N.split("");
+        for (String s : ab) {
+            leftDeque.addLast(s);
         }
 
         //logic
-        for (int i=0; i<K; i++) {
-            for (int j=0; j<S1[i]; j++) {
-                deque.addLast(deque.pollFirst());
-            }
-            if (!deque.peek().equals("?") && !deque.peek().equals(S2[i]) ||
-                    deque.peek().equals("?") && alpha[S2[i].charAt(0)-'A'] == 1) {
-                System.out.println("!");
-                return;
-            } else {
-                deque.pollFirst();
-                deque.addFirst(S2[i]);
-                alpha[S2[i].charAt(0)-'A'] = 1;
+        for (int i=0; i<M; i++) {
+            String a = br.readLine();
+            char c = a.charAt(0);
+            switch (c) {
+                case 'L':
+                    if (!leftDeque.isEmpty())
+                        rightDeque.addFirst(leftDeque.pollLast());
+                    break;
+                case 'D':
+                    if (!rightDeque.isEmpty())
+                        leftDeque.addLast(rightDeque.pollFirst());
+                    break;
+                case 'B':
+                    if (!leftDeque.isEmpty())
+                        leftDeque.removeLast();
+                    break;
+                case 'P':
+                    char t = a.charAt(2);
+                    leftDeque.addLast(String.valueOf(t));
+                    break;
+                default:
+                    break;
             }
         }
-        deque.addLast(deque.pollFirst());
 
         //output
-        for (int i=0; i<N; i++) {
-            System.out.print(deque.pollLast());
-        }
-        System.out.println();
+        while (!leftDeque.isEmpty())
+            sb.append(leftDeque.pollFirst());
+        while (!rightDeque.isEmpty())
+            sb.append(rightDeque.pollFirst());
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 }
