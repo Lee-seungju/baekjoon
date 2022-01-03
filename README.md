@@ -72,6 +72,8 @@
 
 ### 분할 정복
 
+분할 정복 파트부터 블로그에 풀이를 작성함. [블로그](https://velog.io/@seungju0000/1629-%EA%B3%B1%EC%85%88)
+  
 <div>
   <a href='https://www.acmicpc.net/problem/1629'>곱셈</a> - 1629
 </div>
