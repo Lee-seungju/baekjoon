@@ -117,3 +117,24 @@
 <div>
   <a href='https://www.acmicpc.net/problem/9465'>스티커</a> - 9465
 </div>
+
+  ### 자료구조 Part1(배열, 리스트, 연결리스트)
+  
+  <div>
+  <a href='https://www.acmicpc.net/problem/1021'>회전하는 큐</a> - 1021
+</div>
+<div>
+  <a href='https://www.acmicpc.net/problem/1158'>요세푸스</a> - 1158
+</div>
+<div>
+  <a href='https://www.acmicpc.net/problem/2346'>풍선 터뜨리기</a> - 2346
+</div>
+<div>
+  <a href='https://www.acmicpc.net/problem/2840'>행운의 바퀴</a> - 2840
+</div>
+<div>
+  <a href='https://www.acmicpc.net/problem/1406'>에디터</a> - 1406
+</div>
+<div>
+  <a href='https://www.acmicpc.net/problem/5397'>키로거</a> - 5397
+</div>
