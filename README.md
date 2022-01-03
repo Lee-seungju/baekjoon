@@ -71,3 +71,49 @@
 </div>
 
 ### 분할 정복
+
+<div>
+  <a href='https://www.acmicpc.net/problem/1629'>곱셈</a> - 1629
+</div>
+<div>
+  <a href='https://www.acmicpc.net/problem/2104'>부분배열 고르기</a> - 2104
+</div>
+<div>
+  <a href='https://www.acmicpc.net/problem/1725'>히스토그램</a> - 1725
+</div>
+<div>
+  <a href='https://www.acmicpc.net/problem/1780'>종이의 개수</a> - 1780
+</div>
+<div>
+  <a href='https://www.acmicpc.net/problem/1992'>쿼드트리</a> - 1992
+</div>
+<div>
+  <a href='https://www.acmicpc.net/problem/1074'>Z</a> - 1074
+</div>
+<div>
+  <a href='https://www.acmicpc.net/problem/2447'>별 찍기</a> - 2447
+</div>
+<div>
+  <a href='https://www.acmicpc.net/problem/2339'>석판 자르기</a> - 2339
+</div>
+  
+### 동적 계획법
+
+<div>
+  <a href='https://www.acmicpc.net/problem/1463'>1로 만들기</a> - 1463
+</div>
+<div>
+  <a href='https://www.acmicpc.net/problem/2193'>이친수</a> - 2193
+</div>
+<div>
+  <a href='https://www.acmicpc.net/problem/1904'>01타일</a> - 1904
+</div>
+<div>
+  <a href='https://www.acmicpc.net/problem/11726'>2xn 타일링</a> - 11726
+</div>
+<div>
+  <a href='https://www.acmicpc.net/problem/11727'>2xn 타일링2</a> - 11727
+</div>
+<div>
+  <a href='https://www.acmicpc.net/problem/9465'>스티커</a> - 9465
+</div>
