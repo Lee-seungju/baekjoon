@@ -5,99 +5,85 @@ import java.util.*;
 public class Main {
 
     public static int N;
-    public static int K;
-    public static int map[][];
-    public static int L;
-    public static String order[];
-
-    public static Deque<Integer> col = new ArrayDeque<>();
-    public static Deque<Integer> raw = new ArrayDeque<>();
-    public static int count = 0;
-
-    public static int direction = 0;
+    public static String orders[];
 
     public static void main(String[] args) throws IOException {
         //input
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-
         N = Integer.parseInt(br.readLine());
-        K = Integer.parseInt(br.readLine());
-        map = new int[N+2][N+2];
-        for (int i=0; i<N+2; i++) {
-            for (int j=0; j<N+2; j++) {
-                if (i==0 || j==0 || i==N+1 || j==N+1)
-                    map[i][j] = 1;
-            }
-        }
-        for (int i=0; i<K; i++) {
-            String[] a = br.readLine().split(" ");
-            map[Integer.parseInt(a[0])][Integer.parseInt(a[1])] = 2;
-        }
-
-        L = Integer.parseInt(br.readLine());
-
-        order = new String[L];
-        for (int i=0; i<L; i++) {
-            order[i] = br.readLine();
+        orders = new String[N];
+        for (int i=0; i<N; i++) {
+            orders[i] = br.readLine();
         }
 
         //logic
-        col.addLast(1);
-        raw.addLast(1);
-        int i=0;
-        String[] a = order[i].split(" ");
-        while (true) {
-            int b_col = col.getLast();
-            int b_raw = raw.getLast();
-            map[b_col][b_raw] = 3;
-            if (count == Integer.parseInt(a[0])) {
-                if (a[1].equals("L")) {
-                    if (direction == 0)
-                        direction = 3;
-                    else
-                        direction--;
-                } else if (a[1].equals("D")) {
-                    if (direction == 3)
-                        direction = 0;
-                    else
-                        direction++;
-                }
-                i++;
-                if (i < L)
-                    a = order[i].split(" ");
-            }
-            int n_col=0;
-            int n_raw=0;
-            if (direction == 0)
-                n_raw++;
-            else if (direction == 1)
-                n_col++;
-            else if (direction == 2)
-                n_raw--;
-            else if (direction == 3)
-                n_col--;
-
-            count++;
-
-            if (map[b_col + n_col][b_raw + n_raw] == 0) {
-                map[col.pollFirst()][raw.pollFirst()] = 0;
-                col.addLast(b_col + n_col);
-                raw.addLast(b_raw + n_raw);
-                map[b_col + n_col][b_raw + n_raw] = 3;
-            } else if (map[b_col + n_col][b_raw + n_raw] == 2) {
-                col.addLast(b_col + n_col);
-                raw.addLast(b_raw + n_raw);
-                map[b_col + n_col][b_raw + n_raw] = 3;
-            } else if (map[b_col + n_col][b_raw + n_raw] == 1 || map[b_col + n_col][b_raw + n_raw] == 3) {
-                break;
+        Quu quu = new Quu();
+        for (String order : orders) {
+            switch (order) {
+                case "pop":
+                    bw.write(quu.pop() + "\n");
+                    break;
+                case  "size":
+                    bw.write((quu.size()) + "\n");
+                    break;
+                case "empty":
+                    bw.write((quu.empty()) + "\n");
+                    break;
+                case "front":
+                    bw.write((quu.front()) + "\n");
+                    break;
+                case "back":
+                    bw.write((quu.back()) + "\n");
+                    break;
+                default:
+                    int num = Integer.parseInt(order.split(" ")[1]);
+                    quu.push(num);
             }
         }
 
-
-        //output
-        bw.write(String.valueOf(count));
         bw.flush();
         bw.close();
+    }
+
+    static class Quu {
+        private int size = 0;
+        private int stack[] = new int[30001];
+
+        public int pop() {
+            if (size == 0)
+                return -1;
+            return stack[--size];
+        }
+
+        public int size() {
+            return size;
+        }
+
+        public int empty() {
+            if (size == 0)
+                return 1;
+            return 0;
+        }
+
+        public int front() {
+            if (size == 0)
+                return -1;
+            return stack[size - 1];
+        }
+
+        public int back() {
+            if (size == 0)
+                return -1;
+            return stack[0];
+        }
+
+        public void push(int num) {
+            for (int i=0; i<size; i++) {
+                stack[i + 1] = stack[i];
+            }
+            stack[0] = num;
+            size++;
+        }
     }
 }
