@@ -1,89 +1,93 @@
 import java.io.*;
-import java.lang.reflect.Array;
+import java.sql.Array;
 import java.util.*;
 
 public class Main {
 
     public static int N;
-    public static String orders[];
+    public static Deque<Integer[]> Num = new ArrayDeque<>();
 
     public static void main(String[] args) throws IOException {
         //input
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
         N = Integer.parseInt(br.readLine());
-        orders = new String[N];
-        for (int i=0; i<N; i++) {
-            orders[i] = br.readLine();
+        for (int i = 0; i < N - 1; i++) {
+            String[] str = br.readLine().split(" ");
+            Integer[] n = new Integer[2];
+            n[0] = Integer.parseInt(str[0]);
+            n[1] = Integer.parseInt(str[1]);
+            Num.add(n);
         }
+
 
         //logic
-        Quu quu = new Quu();
-        for (String order : orders) {
-            switch (order) {
-                case "pop":
-                    bw.write(quu.pop() + "\n");
-                    break;
-                case  "size":
-                    bw.write((quu.size()) + "\n");
-                    break;
-                case "empty":
-                    bw.write((quu.empty()) + "\n");
-                    break;
-                case "front":
-                    bw.write((quu.front()) + "\n");
-                    break;
-                case "back":
-                    bw.write((quu.back()) + "\n");
-                    break;
-                default:
-                    int num = Integer.parseInt(order.split(" ")[1]);
-                    quu.push(num);
-            }
+        Tree tree = new Tree(1, new Tree(0, null));
+        while (Num.isEmpty() == false) {
+            int firstNum = Num.peek()[0];
+            int secondNum = Num.peek()[1];
+            if (findAndInsert(firstNum, secondNum, tree) == false)
+                Num.addLast(Num.pop());
+            else
+                Num.pop();
         }
 
+        //output
+        for (int i = 2; i <= N; i++) {
+            bw.write(findTree(i, tree) + "\n");
+        }
         bw.flush();
         bw.close();
     }
 
-    static class Quu {
-        private int size = 0;
-        private int stack[] = new int[30001];
+    public static boolean findAndInsert(int first, int second, Tree root) {
+        if (root.node == first) {
+            root.insert(second);
+            return true;
+        } else if (root.node == second) {
+            root.insert(first);
+            return true;
+        }
+        for (Tree tree : root.jaSik) {
+            if (findAndInsert(first, second, tree) == true)
+                return true;
+        }
+        return false;
+    }
 
-        public int pop() {
-            if (size == 0)
-                return -1;
-            return stack[--size];
+    public static int findTree(int node, Tree tree) {
+        for (Tree tree1 : tree.jaSik) {
+            if (tree1.node == node)
+                return tree1.parent.node;
+            int tree2 = findTree(node, tree1);
+            if (tree2 != -1)
+                return tree2;
+        }
+        return -1;
+    }
+
+    static class Tree {
+        private List<Tree> jaSik = new ArrayList<>();
+        private Tree parent;
+        private Integer node;
+
+        Tree(int value, Tree parentNode) {
+            node = value;
+            parent = parentNode;
         }
 
-        public int size() {
-            return size;
+        Tree insert(int value) {
+            Tree newTree = new Tree(value, this);
+            jaSik.add(newTree);
+            return newTree;
         }
 
-        public int empty() {
-            if (size == 0)
-                return 1;
-            return 0;
-        }
-
-        public int front() {
-            if (size == 0)
-                return -1;
-            return stack[size - 1];
-        }
-
-        public int back() {
-            if (size == 0)
-                return -1;
-            return stack[0];
-        }
-
-        public void push(int num) {
-            for (int i=0; i<size; i++) {
-                stack[i + 1] = stack[i];
+        void printAll() {
+            System.out.println(node);
+            for (Tree tree : jaSik) {
+                tree.printAll();
             }
-            stack[0] = num;
-            size++;
         }
     }
 }
